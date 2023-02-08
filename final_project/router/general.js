@@ -12,21 +12,15 @@ public_users.post("/register", (req,res) => {
   const password = req.body.password;
 
   if(typeof username === "undefined" || typeof password === "undefined"){
-
     return res.status(200).json({message : "username &/ password are not provided."})
-  
   }
-
   const userExist = users.find((user)=> user.username === username);
   
   if(userExist){
-  
     return res.status(200).json({message : "username already exists"})
-  
   }else{
-  
+    users.push({"username":username,"password":password});
     return res.status(300).json({message : "User registered"});
-  
   }
 
 });
